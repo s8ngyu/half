@@ -34,6 +34,16 @@
 -(UIColor *)pinColor;
 @end
 
+
+%hook _UIStatusBarStringView
+- (void)setText:(NSString *)text {
+    	if([text containsString:@"%"]) 
+     		return;
+  	else 
+   	    %orig(text);
+}      
+%end
+
 %hook _UIBatteryView
 %property (nonatomic, assign) UIView *bodyView;
 %property (nonatomic, assign) UIView *fillView;
