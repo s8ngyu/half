@@ -19,5 +19,5 @@ after-all::
 ifeq ($(SIMULATOR),1)
 	rm /opt/simject/$(TWEAK_NAME).dylib
 	cp .theos/obj/iphone_simulator/debug/$(TWEAK_NAME).dylib /opt/simject/
-	../../simject/bin/resim
+	../../../simject/bin/resim
 endif
