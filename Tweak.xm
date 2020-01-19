@@ -30,6 +30,7 @@
 -(void)updateBatteryViewPercent;
 -(void)updateBatteryViewWithColor:(UIColor *)color;
 -(void)updateSomeColor;
+-(NSString *)getLocaleBasedString:(NSString *)string ;
 -(UIColor *)halfColor;
 -(UIColor *)pinColor;
 @end
@@ -75,9 +76,9 @@
 		
 		self.overlayView = [[UIView alloc] initWithFrame:CGRectMake(self.firstViewWidth+1, 0, self.secondViewWidth, 11.3)];
 		[self.bodyView addSubview:self.overlayView];
-		
+
 		self.firstLabel = [[InvertedMaskLabel alloc] initWithFrame:CGRectMake(0, 0, 20, 11.3)];
-		self.firstLabel.text = [NSString stringWithFormat: @"%.f", self.chargePercent*100];
+		self.firstLabel.text = [self getLocaleBasedString:[NSString stringWithFormat: @"%.f", self.chargePercent*100]];
 		self.firstLabel.font = [UIFont systemFontOfSize:8 weight:UIFontWeightSemibold];
 		self.firstLabel.textAlignment = NSTextAlignmentCenter;
 		self.firstLabel.textColor = [UIColor whiteColor];
@@ -111,8 +112,8 @@
     CGRect secondLabelFrame = self.secondLabel.frame;
     secondLabelFrame.origin.x = -self.firstViewWidth;
     self.secondLabel.frame = secondLabelFrame;
-    
-    self.firstLabel.text = [NSString stringWithFormat: @"%.f", self.chargePercent*100];
+	
+    self.firstLabel.text = [self getLocaleBasedString:[NSString stringWithFormat: @"%.f", self.chargePercent*100]];
     self.secondLabel.text = self.firstLabel.text;
 }
 
@@ -135,6 +136,17 @@
 	} else {
 		[self updateBatteryViewWithColor:self.fillColor];
 	}
+}
+
+%new
+-(NSString *)getLocaleBasedString:(NSString *)string {
+	NSString *percentage;
+	NSDecimalNumber *percentageInNumber = [NSDecimalNumber decimalNumberWithString:string];
+	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	[formatter setLocale:[NSLocale currentLocale]];
+	percentage = [formatter stringFromNumber:percentageInNumber];
+
+	return percentage;
 }
 
 -(void)setChargingState:(long long)arg1 {
