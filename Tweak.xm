@@ -90,7 +90,6 @@
 		self.secondLabel.textAlignment = NSTextAlignmentCenter;
 		self.secondLabel.textColor = [UIColor whiteColor];
 		self.overlayView.maskView = self.secondLabel;
-
 	}
 	return self;
 }
@@ -145,6 +144,12 @@
 	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setLocale:[NSLocale currentLocale]];
 	percentage = [formatter stringFromNumber:percentageInNumber];
+
+	if (![percentage isEqualToString:string]) {
+		self.firstLabel.transform = CGAffineTransformMakeScale(-1, 1);
+		self.secondLabel.transform = CGAffineTransformMakeScale(-1, 1);
+	}
+
 
 	return percentage;
 }
