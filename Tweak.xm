@@ -157,7 +157,6 @@
 -(void)setChargingState:(long long)arg1 {
 	%orig(arg1);
 	[self updateSomeColor];
-	NSLog(@"TweakHalf setChargingState");
 }
 
 - (void)setSaverModeActive:(BOOL)arg1 {
@@ -173,7 +172,6 @@
 -(void)setChargePercent:(CGFloat)percent {
 	%orig;
 	[self updateBatteryViewPercent];
-	NSLog(@"TweakHalf setChargePercent");
 }
 
 -(UIColor *)_batteryColor {
@@ -197,14 +195,12 @@
 }
 
 -(void)setBoltLayer:(CAShapeLayer *)arg1 {
-	arg1.fillColor = [UIColor clearColor].CGColor;
-	arg1.strokeColor = [UIColor clearColor].CGColor;
+    arg1.hidden = YES;
 	%orig(arg1);
 }
 
 -(void)setBoltMaskLayer:(CAShapeLayer *)arg1 {
-	arg1.fillColor = [UIColor clearColor].CGColor;
-	arg1.strokeColor = [UIColor clearColor].CGColor;
+	arg1.hidden = YES;
 	%orig(arg1);
 }
 
