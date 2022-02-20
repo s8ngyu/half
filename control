@@ -1,9 +1,9 @@
 Package: com.peterdev.half
 Name: half
 Depends: mobilesubstrate
-Version: 1.0.2
+Version: 1.0.3
 Architecture: iphoneos-arm
-Description: New iOS Battery Indicator Style for iOS 11~13
+Description: Fancy iOS Battery Indicator for iOS 11+
 Maintainer: Soongyu Kwon
 Author: Soongyu Kwon & Ayden Leppert
 Section: Tweaks
